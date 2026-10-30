@@ -9,9 +9,8 @@
 [![Hackathon: AIORI](https://img.shields.io/badge/Hackathon-AIORI%202026-blueviolet.svg)]()
 
 > 📺 **Team Introduction Video:** [https://youtu.be/n3m9F1AJtcQ](https://youtu.be/n3m9F1AJtcQ)  
-> 📄 **Hackathon Submission Document:** [`A3-PS015-TC120.pdf`](A3-PS015-TC120.pdf)
+> 📄 **Hackathon Submission Document:** [`A3-PS015-TC120.pdf`](A3-PS015-TC120.pdf)                                                                                 
 > 🎥 **Ticnet Demonstration Video:** [https://youtu.be/DpqJd_0mcoA](https://youtu.be/DpqJd_0mcoA)
-> 📄 **Hackathon Submission Document:** [`A3-PS015-TC120.pdf`](A3-PS015-TC120.pdf)
 ---
 
 ## 🚀 DOWNLOAD TICNET FOR WINDOWS
