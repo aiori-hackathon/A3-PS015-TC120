@@ -1,0 +1,95 @@
+# ==============================================================================
+# TicNet — Git Ignore Specification
+# AIORI Hackathon Submission (Team TEJAS)
+# ==============================================================================
+
+# Python Bytecode and Caches
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*$py.class
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing and Code Quality Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# SQLite Database and WAL files (Local Evidence Store & Dated Backups)
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.sqlite3.backup*
+*.sqlite3.bak*
+ticnet.sqlite3
+ticnet.sqlite3-*
+ticnet.sqlite3.backup*
+ticnet.sqlite3.bak*
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+
+# Secrets, Environment and Credentials
+.env
+.env.*
+*.key
+*.pem
+*.cert
+secrets.toml
+*.secret
+
+# User / Personal Configurations
+config/targets.toml
+config/thresholds.toml
+config/*.local.toml
+config/*.override.toml
+pyrightconfig.json
+
+# Internal Development Documentation & Snapshots
+README_DEVELOPMENT.md
+README_TESTING_DEPLOYMENT.md
+original_live_telemetry_service.py
+LICENSE
+
+# Temporary & Local Outputs
+*.log
+*.tmp
+temp/
+tmp/
+data/*
+!data/.gitkeep
+
+# Generated Telemetry and User Reports (Privacy Protection)
+reports/*
+!reports/.gitkeep
+
+# IDE and Operating System Artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Packaging and Build Distribution (Keep EXE in GitHub Releases)
+build/
+dist/
+*.egg-info/
+.eggs/

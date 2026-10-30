@@ -1,0 +1,101 @@
+# TicNet Network Targets Configuration
+# Schema Version: 1.0.0
+# Reference: 04_MEASUREMENT_METHODOLOGY.md Section 10, 08_SECURITY_PRIVACY_THREAT_MODEL.md Section 2
+
+schema_version = "1.0.0"
+
+[gateway]
+# Auto-discovery flag for default gateway via routing table inspection
+# Type: boolean
+auto_discover = true
+
+# Optional manual override for default gateway IP address (e.g., when multiple adapters exist)
+# Type: string (IPv4/IPv6) or omitted/empty
+# Default: omitted (auto-discover active)
+manual_override_ip = ""
+
+# Number of ICMP Echo probes dispatched to gateway
+# Type: integer; Unit: count; Approved range: 1 to 50; Default: 10
+probe_count = 10
+
+# Per-probe timeout in milliseconds
+# Type: integer; Unit: ms; Approved range: 100 to 5000; Default: 1000
+probe_timeout_ms = 1000
+
+# Inter-probe spacing to prevent self-induced queuing
+# Type: integer; Unit: ms; Approved range: 50 to 5000; Default: 250
+probe_interval_ms = 250
+
+[external_targets]
+# Multi-target reference definitions (minimum 2 independent targets required)
+# Sources: Cloudflare (1.1.1.1, AS13335), Google (8.8.8.8, AS15169), Quad9 (9.9.9.9, AS19281)
+# Approval Status: Approved in 04_MEASUREMENT_METHODOLOGY.md Section 10
+targets = [
+    { id = "ext-cloudflare-primary", label = "Cloudflare DNS Resolver IP", host = "1.1.1.1", type = "ICMP", enabled = true },
+    { id = "ext-google-primary", label = "Google DNS Resolver IP", host = "8.8.8.8", type = "ICMP", enabled = true },
+    { id = "ext-quad9-primary", label = "Quad9 DNS Resolver IP", host = "9.9.9.9", type = "ICMP", enabled = true }
+]
+
+# Probe count per external target
+# Type: integer; Unit: count; Approved range: 1 to 50; Default: 10
+probe_count = 10
+
+# Per-probe timeout in milliseconds
+# Type: integer; Unit: ms; Approved range: 100 to 5000; Default: 1000
+probe_timeout_ms = 1000
+
+# Inter-probe spacing in milliseconds
+# Type: integer; Unit: ms; Approved range: 50 to 5000; Default: 250
+probe_interval_ms = 250
+
+[dns_resolvers]
+# DNS resolvers to evaluate via direct socket queries
+# 'gateway' indicates local DHCP/router resolver dynamically identified at runtime
+resolvers = [
+    { id = "dns-system", label = "Local Gateway / DHCP Resolver", host = "gateway", port = 53, enabled = true },
+    { id = "dns-cloudflare", label = "Cloudflare Public DNS", host = "1.1.1.1", port = 53, enabled = true },
+    { id = "dns-google", label = "Google Public DNS", host = "8.8.8.8", port = 53, enabled = true }
+]
+
+# Standard reference domains for A record resolution
+# Sources: example.com (RFC 2606 reserved), cloudflare.com
+test_domains = ["example.com", "cloudflare.com"]
+
+# Per-query DNS socket timeout in milliseconds
+# Type: integer; Unit: ms; Approved range: 100 to 5000; Default: 2000
+timeout_ms = 2000
+
+[throughput]
+# PROVISIONAL / THIRD-PARTY DEPENDENCY:
+# Cloudflare speed test endpoint is an external provisional third-party endpoint requiring internet access.
+# Approval Status: Provisional pending deployment of dedicated project test infrastructure.
+live_endpoint_url = "https://speed.cloudflare.com/__down?bytes=10000000"
+
+# Local test endpoint for isolated laboratory fault injection testing
+# Approval Status: Approved for lab environment in 09_LAB_SAFETY_RUNBOOK.md
+lab_endpoint_url = "http://127.0.0.1:8080/testfile.bin"
+
+# Hard duration ceiling for throughput test in seconds
+# Type: integer; Unit: seconds; Approved range: 1 to 30; Ceiling: 30; Default: 10
+max_duration_seconds = 10
+
+# Hard ceiling for throughput transfer volume in bytes
+# Type: integer; Unit: bytes; Approved range: 1024 to 104857600 (100MB ceiling); Default: 26214400 (25 MB)
+max_transfer_bytes = 26214400
+
+[loaded_latency]
+# Enable loaded latency (bufferbloat) measurement during throughput transfer
+# Type: boolean; Default: true
+enabled = true
+
+# Traffic generation direction during loaded measurement
+# Options: "download", "upload", "bidirectional"
+traffic_type = "download"
+
+# Probe sampling interval during active traffic load
+# Type: integer; Unit: ms; Approved range: 20 to 1000; Default: 100
+sample_interval_ms = 100
+
+# Maximum duration ceiling for loaded latency test in seconds
+# Type: integer; Unit: seconds; Approved range: 1 to 30; Default: 10
+max_duration_seconds = 10

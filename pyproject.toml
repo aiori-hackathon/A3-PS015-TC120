@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ticnet"
+version = "0.1.0"
+description = "Explainable Home and Last-Mile Connectivity Diagnosis"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Sudip Barik" },
+    { name = "Pushon Bhattacharyya" },
+    { name = "Tuhin Mondal" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: System :: Networking :: Monitoring",
+    "Intended Audience :: End Users/Desktop"
+]
+dependencies = [
+    "PySide6>=6.7.0",
+    "streamlit>=1.35.0",
+    "dnspython>=2.6.0",
+    "psutil>=5.9.0",
+    "speedtest-cli>=2.1.3",
+    "tomli>=2.0.1; python_version < '3.11'",
+    "tomli-w>=1.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.12.0",
+    "pytest-cov>=4.1.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+

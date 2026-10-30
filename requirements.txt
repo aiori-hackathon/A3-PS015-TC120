@@ -1,0 +1,5 @@
+# TicNet Runtime Dependencies
+PySide6>=6.7.0
+streamlit>=1.35.0
+dnspython>=2.6.0
+tomli-w>=1.0.0

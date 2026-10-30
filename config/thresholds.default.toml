@@ -1,0 +1,92 @@
+# TicNet Versioned Diagnostic Rule Thresholds
+# Schema Version: 1.0.0
+# References: 04_MEASUREMENT_METHODOLOGY.md, 05_DIAGNOSIS_RULES.md, 14_RISKS_AND_OPEN_QUESTIONS.md
+
+schema_version = "1.0.0"
+
+[general]
+# Backward-compatibility alias for configuration version
+config_version = "1.0.0"
+
+[sample_requirements]
+# Minimum required valid samples for metric validity
+# Values below these minimums yield INSUFFICIENT_SAMPLES rather than fabricated metrics.
+# Reference: 04_MEASUREMENT_METHODOLOGY.md Section 5
+min_gateway_samples = 5
+min_external_samples = 10
+min_dns_samples = 3
+min_loaded_samples = 5
+
+# Statistical sample count minimums
+# Median calculation requires n >= 3 (Methodology Section 5)
+min_samples_for_median = 3
+# 95th Percentile calculation requires n >= 10 (Methodology Section 5)
+min_samples_for_p95 = 10
+
+[gateway_thresholds]
+# Critical threshold: 100% gateway packet loss triggers Rule R-GW-01 (Gateway Unreachable)
+# Status: Approved in 05_DIAGNOSIS_RULES.md Section 2.1
+packet_loss_critical_pct = 100.0
+
+# PROVISIONAL: Local network degradation warning threshold.
+# Status: Provisional pending calibration against healthy home Wi-Fi baselines (RISK-09).
+# Unit: percent; Approved range: 0.0 to 100.0
+packet_loss_warning_pct = 10.0
+
+# PROVISIONAL: Round-Trip Delay Variation (MACD) warning threshold.
+# Status: Provisional pending baseline calibration.
+# Unit: milliseconds; Approved range: 0.0 to 1000.0
+jitter_warning_ms = 25.0
+
+# PROVISIONAL: Local gateway median RTT spike warning threshold.
+# Status: Provisional pending baseline calibration.
+# Unit: milliseconds; Approved range: 0.0 to 1000.0
+rtt_spike_warning_ms = 100.0
+
+[external_thresholds]
+# PROVISIONAL: External network degradation packet loss warning threshold.
+# Triggers R-LOSS-01 when observed across multiple external targets.
+# Status: Provisional pending ISP baseline calibration (RISK-09).
+# Unit: percent; Approved range: 0.0 to 100.0
+packet_loss_warning_pct = 15.0
+
+# PROVISIONAL: External MACD jitter warning threshold.
+# Status: Provisional pending ISP baseline calibration.
+# Unit: milliseconds; Approved range: 0.0 to 1000.0
+jitter_warning_ms = 30.0
+
+# Minimum count of independent external targets that must show degradation before concluding external issue.
+# If only 1 target degrades, Rule R-INCONCLUSIVE-01 is triggered (single-target bias protection).
+# Status: Approved in 04_MEASUREMENT_METHODOLOGY.md Section 10 and 05_DIAGNOSIS_RULES.md
+min_degraded_targets = 2
+
+[dns_thresholds]
+# DNS query failure percentage threshold triggering Rule R-DNS-01.
+# Status: Approved in 05_DIAGNOSIS_RULES.md Section 2.2
+# Unit: percent; Approved range: 0.0 to 100.0
+failure_rate_warning_pct = 80.0
+
+# PROVISIONAL: DNS lookup response time warning threshold.
+# Status: Provisional pending resolver latency calibration.
+# Unit: milliseconds; Approved range: 0.0 to 5000.0
+slow_lookup_ms = 300.0
+
+[loaded_thresholds]
+# PROVISIONAL: Bufferbloat median RTT increase threshold (RTT_loaded_median - RTT_idle_median).
+# Triggers Rule R-LOAD-01.
+# Status: Provisional pending calibration (RISK-09).
+# Unit: milliseconds; Approved range: 0.0 to 5000.0
+bufferbloat_rtt_delta_ms = 50.0
+
+# PROVISIONAL: Bufferbloat ratio threshold (p95_loaded / median_idle).
+# Triggers Rule R-LOAD-01.
+# Status: Provisional pending calibration (RISK-09).
+# Unit: dimensionless ratio; Approved range: 1.0 to 50.0
+bufferbloat_ratio = 2.5
+
+[retention]
+# Local diagnostic history retention limits (SQLite database)
+# Reference: 08_SECURITY_PRIVACY_THREAT_MODEL.md
+max_historical_runs = 100
+max_retention_days = 30
+auto_purge_on_limit = true
