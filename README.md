@@ -10,7 +10,7 @@
 
 > 📺 **Team Introduction Video:** [https://youtu.be/n3m9F1AJtcQ](https://youtu.be/n3m9F1AJtcQ)  
 > 📄 **Hackathon Submission Document:** [`A3-PS015-TC120.pdf`](A3-PS015-TC120.pdf)                                                                                 
-> 🎥 **Ticnet Demonstration Video:** [https://youtu.be/DpqJd_0mcoA](https://youtu.be/DpqJd_0mcoA)
+> 🎥 **TicNet Demonstration Video:** [https://youtu.be/DpqJd_0mcoA](https://youtu.be/DpqJd_0mcoA)
 ---
 
 ## 🚀 DOWNLOAD TICNET FOR WINDOWS
@@ -292,4 +292,4 @@ Developed with pride for the **AIORI Hackathon 2026** by **Team TEJAS**:
 - **Release:** [v1.0.0 — Windows Desktop Release](https://github.com/aiori-hackathon/A3-PS015-TC120/releases/tag/v1.0.0)
 - **Team Introduction Video:** [https://youtu.be/n3m9F1AJtcQ](https://youtu.be/n3m9F1AJtcQ)
 - **Hackathon Presentation & Submission Document:** [`A3-PS015-TC120.pdf`](A3-PS015-TC120.pdf)
-- **Ticnet Demonstration Video:** [https://youtu.be/DpqJd_0mcoA](https://youtu.be/DpqJd_0mcoA)
+- **TicNet Demonstration Video:** [https://youtu.be/DpqJd_0mcoA](https://youtu.be/DpqJd_0mcoA)
